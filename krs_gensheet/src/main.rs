@@ -1,4 +1,8 @@
+use crate::krs_inputloader::ExtractText;
+
 use clap::Parser;
+
+mod krs_inputloader;
 
 /// Simple program to greet a person
 #[derive(Parser, Debug)]
