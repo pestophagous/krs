@@ -2,6 +2,10 @@
 name = "krs"
 version = "0.1.0"
 edition = "2021"
+# description is used by clap for 'about' in --help
+description = """
+Generate math worksheets and answer keys as PDF. Write your own math problems in \
+LaTeX. Tag by topic; filter; randomize; print!"""
 
 [dependencies]
 clap = { version = "4.5.48", features = ["derive"] }

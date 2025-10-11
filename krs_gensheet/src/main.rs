@@ -1,22 +1,16 @@
 //use crate::krs_base::set::Set; // oh!
 use crate::krs_inputloader::ExtractText; // #[warn(unused_imports)] can i do as error?
 
-use clap::Parser;
+use clap::Parser; // https://docs.rs/clap/latest/clap/_derive/_tutorial/index.html
 
 mod krs_base;
 mod krs_inputloader;
 
-/// Simple program to greet a person
 #[derive(Parser, Debug)]
 #[command(version, about, long_about = None)]
 struct Args {
-    /// Name of the person to greet
-    #[arg(short, long)]
-    name: String,
-
-    /// Number of times to greet
-    #[arg(short, long, default_value_t = 1)]
-    count: u8,
+    /// Either exactly one "metafile", or 1+ problemset files
+    inputfile: Vec<String>,
 }
 
 fn main() {
@@ -29,9 +23,12 @@ fn main() {
     let input_set = krs_base::set::Set::new();
     let mut input_items = input_set.get_all_items();
 
-    for _ in 0..args.count {
-        println!("Hello {}!", args.name);
-    }
+    // extractor = extract_text.ExtractText([p])
+    // inputset = extractor.parse()
+
+    // print(p)  # TODO: logger
+
+    println!("Hello {:#?}", args.inputfile);
 
     for item in input_items.iter() {
         println!("");
@@ -41,13 +38,3 @@ fn main() {
         println!("prompt {}", item.prompt);
     }
 }
-
-//fn main() {
-//  println!("Hello World!");
-
-// # FUTURE: pass in more than one input file
-// p = os.path.normpath(os.path.join(os.getcwd(), sys.argv[1]))
-// print(p)  # TODO: logger
-// extractor = extract_text.ExtractText([p])
-// inputset = extractor.parse()
-//}
