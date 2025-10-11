@@ -1,6 +1,3 @@
-//use crate::krs_base::set::Set; // oh!
-use crate::krs_inputloader::ExtractText; // #[warn(unused_imports)] can i do as error?
-
 use clap::Parser; // https://docs.rs/clap/latest/clap/_derive/_tutorial/index.html
 
 mod krs_base;
@@ -20,15 +17,13 @@ fn main() {
     //    https://github.com/clap-rs/clap/discussions/2763#discussioncomment-7633613
     let args = Args::parse();
 
-    let input_set = krs_base::set::Set::new();
-    let mut input_items = input_set.get_all_items();
-
-    // extractor = extract_text.ExtractText([p])
-    // inputset = extractor.parse()
-
-    // print(p)  # TODO: logger
-
+    // TODO: logger?
     println!("Hello {:#?}", args.inputfile);
+
+    let extractor = krs_inputloader::extract::ExtractText::new(args.inputfile);
+
+    let input_set = extractor.parse();
+    let input_items = input_set.get_all_items();
 
     for item in input_items.iter() {
         println!("");

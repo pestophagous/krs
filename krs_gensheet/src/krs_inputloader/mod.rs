@@ -1,1 +1,1 @@
-pub struct ExtractText {}
+pub mod extract;
